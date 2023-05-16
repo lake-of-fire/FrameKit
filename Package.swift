@@ -22,6 +22,9 @@ let package = Package(
             name: "FrameKit",
             dependencies: [
                 .product(name: "Algorithms", package: "swift-algorithms")
+            ],
+            resources: [
+                .process("Resources"),
             ]
         ),
         .executableTarget(

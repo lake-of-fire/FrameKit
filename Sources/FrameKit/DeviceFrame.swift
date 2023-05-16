@@ -10,16 +10,16 @@ public struct DeviceFrame {
     /// To make an NSImage object that has image combining store screenshot and device frame image togther
     /// - Parameters:
     ///   - screenshot: A relative or absolute path to app screenshot image file
-    ///   - deviceFrame: A relative or absolute path to device frame image file
+    ///   - deviceName: Name of device with frame contained in module bundle
     ///   - deviceFrameOffset: Offset to adjust the position of app screenshot
     /// - Returns: an image object. `nil` if something went wrong.
-    public static func makeImage(screenshot: String, deviceFrame: String, deviceFrameOffset: CGSize) throws -> NSImage? {
+    public static func makeImage(screenshot: String, deviceName: String, deviceFrameOffset: CGSize) throws -> NSImage? {
         guard let screenshotImage = NSImage(contentsOfFile: absolutePath(screenshot)) else {
             throw Error.fileNotFound("screenshot was not found at \(screenshot)")
         }
 
-        guard let deviceFrameImage = NSImage(contentsOfFile: absolutePath(deviceFrame)) else {
-            throw Error.fileNotFound("device frame was not found at \(deviceFrame)")
+        guard let deviceFrameImage = Bundle.module.image(forResource: deviceName) else {
+            throw Error.fileNotFound("device frame was not found for name \(deviceName)")
         }
 
         // Device frame's image needs to be generted separaratedly to make framing logic easy
