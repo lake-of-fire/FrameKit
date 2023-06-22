@@ -9,7 +9,7 @@ let package = Package(
         .macOS(.v12)
     ],
     products: [
-        .executable(name: "framekit", targets: ["SampleFrameKitCLI"]),
+        //.executable(name: "framekit", targets: ["SampleFrameKitCLI"]),
         .library(name: "FrameKit", targets: ["FrameKit"]),
     ],
     dependencies: [
@@ -27,20 +27,20 @@ let package = Package(
                 .process("Resources"),
             ]
         ),
-        .executableTarget(
-            name: "SampleFrameKitCLI",
-            dependencies: [
-                .target(name: "FrameKit"),
-                .target(name: "SampleFrameKitLayout"),
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-            ]
-        ),
-        .target(
-            name: "SampleFrameKitLayout",
-            dependencies: [
-                .target(name: "FrameKit"),
-            ]
-        ),
+//        .executableTarget(
+//            name: "SampleFrameKitCLI",
+//            dependencies: [
+//                .target(name: "FrameKit"),
+//                .target(name: "SampleFrameKitLayout"),
+//                .product(name: "ArgumentParser", package: "swift-argument-parser"),
+//            ]
+//        ),
+//        .target(
+//            name: "SampleFrameKitLayout",
+//            dependencies: [
+//                .target(name: "FrameKit"),
+//            ]
+//        ),
         .testTarget(
             name: "FrameKitTests",
             dependencies: [
